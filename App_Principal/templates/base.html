@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+            NexaChat
+        {% endblock %}
+    </title>
+
+    <link rel="stylesheet" href="{% static 'App_Principal/css/styles.css' %}">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="Header">
+
+        <div class="Header-Container">
+
+            <a href="{% url 'index' %}" class="Logo">
+                <h1>Nexa<span>Chat</span></h1>
+            </a>
+
+            <nav>
+
+                {% if user.is_authenticated %}
+
+                {% else %}
+
+                    <a href="{% url 'index' %}">
+            Inicio
+                    </a>
+
+                    <a href="{% url 'login' %}">
+            Iniciar sesión
+                    </a>
+
+                    <a href="{% url 'register' %}">
+            Registrarse
+                    </a>
+
+                {% endif %}
+
+            </nav>
+
+        </div>
+
+    </header>
+
+    <!-- CONTENIDO -->
+    <main>
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- FOOTER -->
+    <footer class="Footer">
+
+        <div class="Container">
+
+            <h3>NexaChat</h3>
+
+            <p>
+                Conecta personas, comparte momentos y descubre nuevas comunidades.
+            </p>
+
+            <small>
+                © 2026 NexaChat. Todos los derechos reservados.
+            </small>
+
+        </div>
+
+    </footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const mensajes = document.querySelector(".messages");
+
+    if (mensajes) {
+        setTimeout(function () {
+            mensajes.style.display = "none";
+        }, 3000);
+    }
+});
+</script>  
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+Editar perfil
+{% endblock %}
+
+{% block content %}
+
+<div class="Edit-Profile">
+
+    <h1>Editar perfil</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Guardar cambios
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

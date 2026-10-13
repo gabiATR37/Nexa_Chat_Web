@@ -1,0 +1,262 @@
+{% extends "base_app.html" %}
+{% load static %}
+
+{% block title %}
+Perfil - NexaChat
+{% endblock %}
+
+{% block content %}
+
+<section class="Profile">
+
+    <!-- ==========================
+            BANNER
+    =========================== -->
+
+    <div class="Profile-Banner">
+        <img
+            src="{{ profile_user.profile.image.url }}"
+            class="Profile-Avatar"
+            alt="Foto de perfil">
+    </div>
+
+    <div class="Profile-Container">
+
+        <!-- ==========================
+                DATOS PRINCIPALES
+        =========================== -->
+
+        <h1>
+            {% if profile.display_name %}
+                {{ profile.display_name }}
+            {% else %}
+                {{ profile_user.username }}
+            {% endif %}
+            <span class="Verified">✔</span>
+        </h1>
+
+        <h3>@{{ profile_user.username }}</h3>
+
+        {% if profile.bio %}
+            <p>{{ profile.bio }}</p>
+        {% else %}
+            <p>Este usuario aún no escribió una biografía.</p>
+        {% endif %}
+
+        <!-- WEBSITE -->
+
+        {% if profile.website %}
+        <div class="Profile-Website">
+            🌐
+            <a href="{{ profile.website }}" target="_blank">
+                {{ profile.website }}
+            </a>
+        </div>
+        {% endif %}
+
+        <!-- ==========================
+                ESTADÍSTICAS
+        =========================== -->
+
+        <div class="Profile-Stats">
+
+            <div>
+                <h2>{{ posts_count }}</h2>
+                <span>Publicaciones</span>
+            </div>
+
+            <div>
+                <h2>{{ followers_count }}</h2>
+                <span>Seguidores</span>
+            </div>
+
+            <div>
+                <h2>{{ following_count }}</h2>
+                <span>Siguiendo</span>
+            </div>
+
+        </div>
+
+        <!-- ==========================
+                INFORMACIÓN
+        =========================== -->
+
+        <div class="Profile-Info">
+
+            <div class="Info-Card">
+                <h3>📍 Ubicación</h3>
+                <p>{{ profile.location }}</p>
+            </div>
+
+            <div class="Info-Card">
+                <h3>📅 Miembro desde</h3>
+                <p>{{ profile.user.date_joined|date:"Y" }}</p>
+            </div>
+
+        </div>
+
+        {% if request.user == profile_user %}
+
+        <a class="Edit-Profile-Btn" href="{% url 'edit_profile' %}">
+            ✏️ Editar perfil
+        </a>
+
+        {% else %}
+
+        <form action="{% url 'toggle_follow' profile_user.username %}" method="POST">
+
+            {% csrf_token %}
+
+            {% if is_following %}
+
+            <button
+                type="submit"
+                class="Follow-Btn Following">
+                ✔ Siguiendo
+            </button>
+
+            {% else %}
+
+            <button
+                type="submit"
+                class="Follow-Btn">
+                + Seguir
+            </button>
+
+            {% endif %}
+            <a href="{% url 'nuevo_chat' profile_user.username %}" class="Message-Btn">
+                💬 Mandar mensaje
+            </a>
+
+        </form>
+
+
+        {% endif %}
+
+        <!-- ==========================
+                CONTENIDO
+        =========================== -->
+
+        <div class="Profile-Main">
+
+            <div class="Profile-Tabs">
+                <button class="Active">Publicaciones</button>
+                <button>Fotos</button>
+                <button>Música</button>
+                <button>Comunidades</button>
+                <button>Actividad</button>
+            </div>
+
+            <div class="Posts">
+
+                {% if posts %}
+
+                    {% for post in posts %}
+
+                    <div class="Post-Card">
+
+                        <div class="Post-Header">
+
+                            <img
+                                src="{{ post.author.profile.image.url }}"
+                                class="Post-Avatar"
+                                alt="Avatar">
+
+                            <div>
+
+                                <h3>
+                                    {% if post.author.profile.display_name %}
+                                        {{ post.author.profile.display_name }}
+                                    {% else %}
+                                        {{ post.author.username }}
+                                    {% endif %}
+                                </h3>
+
+                                <span>
+                                    @{{ post.author.username }}
+                                    •
+                                    {{ post.created_at|timesince }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        {% if post.content %}
+                        <p class="Post-Text">
+                            {{ post.content }}
+                        </p>
+                        {% endif %}
+
+                        {% if post.image %}
+                        <img
+                            src="{{ post.image.url }}"
+                            class="Post-Image"
+                            alt="Imagen de la publicación">
+                        {% endif %}
+
+                        <div class="Post-Actions">
+
+                            <form
+                                action="{% url 'toggle_like' post.id %}"
+                                method="POST">
+
+                                {% csrf_token %}
+
+                                <button type="submit">
+                                    ❤️ {{ post.likes.count }}
+                                </button>
+
+                            </form>
+
+                            <a href="{% url 'post_comments' post.id %}">
+                                💬 {{ post.comments.count }}
+                            </a>
+
+                            <button>🔁 0</button>
+
+                            <button>📤 Compartir</button>
+
+                        </div>
+
+                        {% if request.user == post.author %}
+
+                        <div class="Post-Owner">
+
+                            <a href="{% url 'edit_post' post.id %}">
+                                ✏️ Editar
+                            </a>
+
+                            <a href="{% url 'delete_post' post.id %}">
+                                🗑 Eliminar
+                            </a>
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                <div class="Post-Card">
+
+                    <p style="text-align:center;padding:30px;">
+                        Este usuario todavía no publicó nada.
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

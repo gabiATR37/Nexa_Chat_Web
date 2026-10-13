@@ -1,0 +1,2550 @@
+/* ==========================
+        RESET
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+/* ==========================
+        LAYOUT
+========================== */
+
+.chat-layout{
+    width:100%;
+    height:100vh;
+    display:flex;
+}
+
+.chat-room{
+    flex:1;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    background:var(--chat);
+}
+/* ==========================
+        SIDEBAR
+========================== */
+
+.sidebar{
+    background:#111827;
+    border-right:1px solid rgba(255,255,255,.08);
+    padding:30px 20px;
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    overflow-y:auto;
+}
+
+/* ==========================
+        LOGO
+========================== */
+
+.logo{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.logo a{
+    text-decoration:none;
+}
+
+.logo h2{
+    color:white;
+    font-size:30px;
+    font-weight:700;
+}
+
+.logo span{
+    color:#3b82f6;
+}
+
+/* ==========================
+        MENÚ
+========================== */
+
+.sidebar nav{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.sidebar nav a{
+    text-decoration:none;
+    color:#cbd5e1;
+    padding:14px 18px;
+    border-radius:12px;
+    transition:.3s;
+    font-size:16px;
+}
+
+.sidebar nav a:hover{
+    background:#1e293b;
+    color:white;
+}
+
+/* ==========================
+        CONTENIDO
+========================== */
+
+.contenido{
+    margin-left:260px;
+    width:calc(100vw - 260px);
+    min-height:100vh;
+    padding:0;
+    overflow:hidden;
+}
+
+/* ==========================
+        SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#3b82f6;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+    background:#0f172a;
+}
+
+/* ==========================
+        RESPONSIVE
+========================== */
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:80px;
+        padding:20px 10px;
+    }
+
+    .logo h2{
+        font-size:20px;
+    }
+
+    .sidebar nav a{
+        text-align:center;
+        padding:14px 5px;
+        font-size:14px;
+    }
+
+    .contenido{
+        margin-left:80px;
+        width:calc(100% - 80px);
+        padding:20px;
+    }
+
+}
+
+/* =====================================
+        NUEVA PUBLICACIÓN
+===================================== */
+
+.Create-Post{
+    width:100%;
+    max-width:800px;
+    margin:40px auto;
+}
+
+.Create-Post h2{
+    font-size:34px;
+    margin-bottom:30px;
+    color:#fff;
+    font-weight:700;
+}
+
+.Create-Post form{
+    background:#1e293b;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.Create-Post form p{
+    margin-bottom:25px;
+}
+
+.Create-Post label{
+    display:block;
+    margin-bottom:10px;
+    color:#cbd5e1;
+    font-weight:600;
+}
+
+.Create-Post input,
+.Create-Post textarea,
+.Create-Post select{
+    width:100%;
+    padding:15px;
+    background:#0f172a;
+    color:white;
+    border:1px solid #334155;
+    border-radius:12px;
+    outline:none;
+    transition:.3s;
+    font-size:15px;
+}
+
+.Create-Post textarea{
+    min-height:180px;
+    resize:vertical;
+}
+
+.Create-Post input:focus,
+.Create-Post textarea:focus,
+.Create-Post select:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 3px rgba(59,130,246,.2);
+}
+
+.Create-Post input[type="file"]{
+    background:#111827;
+    border:2px dashed #3b82f6;
+    padding:18px;
+    cursor:pointer;
+}
+
+.Create-Post input[type="file"]::file-selector-button{
+    background:#3b82f6;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    margin-right:15px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.Create-Post input[type="file"]::file-selector-button:hover{
+    background:#2563eb;
+}
+
+.Create-Post button{
+    width:100%;
+    margin-top:15px;
+    padding:16px;
+    background:#3b82f6;
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.Create-Post button:hover{
+    background:#2563eb;
+    transform:translateY(-2px);
+}
+
+.Create-Post .helptext{
+    display:block;
+    margin-top:8px;
+    color:#94a3b8;
+    font-size:13px;
+}
+
+.Create-Post ul.errorlist{
+    list-style:none;
+    margin-bottom:10px;
+    color:#ef4444;
+    font-size:14px;
+}
+
+@media(max-width:768px){
+
+    .Create-Post{
+        margin:20px;
+    }
+
+    .Create-Post form{
+        padding:25px;
+    }
+
+    .Create-Post h2{
+        font-size:28px;
+    }
+
+}
+
+/* =====================================
+        ELIMINAR PUBLICACIÓN
+===================================== */
+
+.Delete-Post{
+    width:100%;
+    max-width:600px;
+    margin:80px auto;
+    background:#1e293b;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:40px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.Delete-Post h2{
+    font-size:32px;
+    color:#fff;
+    margin-bottom:20px;
+}
+
+.Delete-Post p{
+    color:#cbd5e1;
+    font-size:17px;
+    line-height:1.8;
+    margin-bottom:35px;
+}
+
+.Delete-Post form{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.Delete-Post button{
+    background:#ef4444;
+    color:#fff;
+    border:none;
+    padding:15px 28px;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.Delete-Post button:hover{
+    background:#dc2626;
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(239,68,68,.35);
+}
+
+.Delete-Post a{
+    display:inline-block;
+    padding:15px 28px;
+    background:#334155;
+    color:#fff;
+    text-decoration:none;
+    border-radius:12px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.Delete-Post a:hover{
+    background:#475569;
+    transform:translateY(-2px);
+}
+
+@media(max-width:600px){
+
+    .Delete-Post{
+        margin:30px 20px;
+        padding:30px 20px;
+    }
+
+    .Delete-Post h2{
+        font-size:26px;
+    }
+
+    .Delete-Post form{
+        flex-direction:column;
+    }
+
+    .Delete-Post button,
+    .Delete-Post a{
+        width:100%;
+    }
+
+}
+
+/* =====================================
+        EDITAR PUBLICACIÓN
+===================================== */
+
+.Create-Post h1{
+    font-size:34px;
+    color:#ffffff;
+    margin-bottom:30px;
+    font-weight:700;
+}
+
+.Create-Post button{
+    width:100%;
+    margin-top:15px;
+    padding:16px;
+    background:#f59e0b;
+    color:#ffffff;
+    border:none;
+    border-radius:12px;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.Create-Post button:hover{
+    background:#d97706;
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(245,158,11,.35);
+}
+
+.Create-Post img{
+    max-width:100%;
+    border-radius:15px;
+    margin:15px 0;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.Create-Post .current-image{
+    margin-bottom:20px;
+    text-align:center;
+}
+
+.Create-Post .current-image p{
+    color:#cbd5e1;
+    margin-bottom:10px;
+}
+
+@media(max-width:768px){
+
+    .Create-Post h1{
+        font-size:28px;
+        text-align:center;
+    }
+
+}
+
+/* =====================================
+        EDITAR PERFIL
+===================================== */
+
+.Edit-Profile{
+    width:100%;
+    max-width:850px;
+    margin:40px auto;
+}
+
+.Edit-Profile h1{
+    font-size:36px;
+    color:#ffffff;
+    margin-bottom:30px;
+    font-weight:700;
+}
+
+.Edit-Profile form{
+    background:#1e293b;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.Edit-Profile form p{
+    margin-bottom:22px;
+}
+
+.Edit-Profile label{
+    display:block;
+    margin-bottom:10px;
+    color:#cbd5e1;
+    font-weight:600;
+    font-size:15px;
+}
+
+.Edit-Profile input,
+.Edit-Profile textarea,
+.Edit-Profile select{
+    width:100%;
+    padding:15px;
+    background:#0f172a;
+    color:#ffffff;
+    border:1px solid #334155;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+    transition:.3s;
+}
+
+.Edit-Profile input:focus,
+.Edit-Profile textarea:focus,
+.Edit-Profile select:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 3px rgba(59,130,246,.2);
+}
+
+.Edit-Profile textarea{
+    min-height:140px;
+    resize:vertical;
+}
+
+.Edit-Profile input[type="file"]{
+    background:#111827;
+    border:2px dashed #3b82f6;
+    padding:18px;
+    cursor:pointer;
+}
+
+.Edit-Profile input[type="file"]::file-selector-button{
+    background:#3b82f6;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    margin-right:15px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.Edit-Profile input[type="file"]::file-selector-button:hover{
+    background:#2563eb;
+}
+
+.Edit-Profile img{
+    display:block;
+    max-width:180px;
+    max-height:180px;
+    object-fit:cover;
+    margin:15px auto;
+    border-radius:50%;
+    border:4px solid #3b82f6;
+    box-shadow:0 0 25px rgba(59,130,246,.35);
+}
+
+.Edit-Profile .helptext{
+    display:block;
+    margin-top:8px;
+    color:#94a3b8;
+    font-size:13px;
+}
+
+.Edit-Profile ul.errorlist{
+    list-style:none;
+    margin-bottom:10px;
+    color:#ef4444;
+    font-size:14px;
+}
+
+.Edit-Profile button{
+    width:100%;
+    margin-top:20px;
+    padding:16px;
+    background:#3b82f6;
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.Edit-Profile button:hover{
+    background:#2563eb;
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(59,130,246,.35);
+}
+
+@media(max-width:768px){
+
+    .Edit-Profile{
+        margin:20px;
+    }
+
+    .Edit-Profile form{
+        padding:25px;
+    }
+
+    .Edit-Profile h1{
+        text-align:center;
+        font-size:30px;
+    }
+
+}
+
+/* =====================================
+            EXPLORAR
+===================================== */
+
+.Search-Form{
+    display:flex;
+    gap:15px;
+    margin:30px 0 40px;
+}
+
+.Search-Form input{
+    flex:1;
+    padding:15px 18px;
+    background:#1e293b;
+    color:#fff;
+    border:1px solid #334155;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+    transition:.3s;
+}
+
+.Search-Form input::placeholder{
+    color:#94a3b8;
+}
+
+.Search-Form input:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 3px rgba(59,130,246,.25);
+}
+
+.Search-Form button{
+    padding:15px 28px;
+    background:#3b82f6;
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.Search-Form button:hover{
+    background:#2563eb;
+    transform:translateY(-2px);
+}
+
+/* ===========================
+        TÍTULOS
+=========================== */
+
+.Container h2{
+    font-size:38px;
+    margin-bottom:15px;
+    
+}
+
+.Container h3{
+    margin:35px 0 20px;
+    color:#ffffff;
+}
+
+/* ===========================
+        TARJETA USUARIO
+=========================== */
+
+.User-Card{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:20px;
+    background:#1e293b;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    margin-bottom:20px;
+    transition:.3s;
+}
+
+.User-Card:hover{
+    transform:translateY(-4px);
+    border-color:#3b82f6;
+    box-shadow:0 15px 30px rgba(0,0,0,.25);
+}
+
+.User-Card img{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #3b82f6;
+}
+
+.User-Card strong{
+    display:block;
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.User-Card a{
+    display:inline-block;
+    margin-top:10px;
+    color:#60a5fa;
+    font-weight:600;
+    transition:.3s;
+}
+
+.User-Card a:hover{
+    color:#93c5fd;
+}
+
+/* ===========================
+        PUBLICACIONES
+=========================== */
+
+.Post{
+    background:#1e293b;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:30px;
+    transition:.3s;
+}
+
+.Post:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.Post h3{
+    margin:0 0 15px;
+    color:#fff;
+}
+
+.Post p{
+    color:#cbd5e1;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.Post-Image{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    margin: 15px auto;
+    object-fit: unset;
+}
+
+.Post small{
+    color:#94a3b8;
+}
+
+.Post a{
+    display:inline-block;
+    margin-top:15px;
+    color:#60a5fa;
+    font-weight:600;
+    transition:.3s;
+}
+
+.Post a:hover{
+    color:#93c5fd;
+}
+
+/* ===========================
+        SEPARADORES
+=========================== */
+
+hr{
+    border:none;
+    height:1px;
+    background:rgba(255,255,255,.08);
+    margin:25px 0;
+}
+
+/* ===========================
+        RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+    .Search-Form{
+        flex-direction:column;
+    }
+
+    .Search-Form button{
+        width:100%;
+    }
+
+    .User-Card{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .Container h2{
+        font-size:30px;
+    }
+
+}
+
+/*==================================================
+                NOTIFICATIONS
+==================================================*/
+
+.Notifications-Page{
+
+    max-width:900px;
+    margin:auto;
+    padding:40px;
+
+}
+
+.Notifications-Header{
+
+    margin-bottom:40px;
+
+}
+
+.Notifications-Header h1{
+
+    font-size:42px;
+    color:white;
+    margin-bottom:10px;
+
+}
+
+.Notifications-Header p{
+
+    color:#94a3b8;
+    font-size:17px;
+
+}
+
+.Notification-Card{
+
+    display:flex;
+    align-items:center;
+    gap:25px;
+
+    background:#1e293b;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:20px;
+
+    transition:.3s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+}
+
+.Notification-Card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:#3b82f6;
+
+    box-shadow:0 20px 35px rgba(59,130,246,.2);
+
+}
+
+.Notification-Icon{
+
+    width:70px;
+    height:70px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:34px;
+
+    border-radius:50%;
+
+    background:#334155;
+
+    flex-shrink:0;
+
+}
+
+.Notification-Content{
+
+    flex:1;
+
+}
+
+.Notification-Content h3{
+
+    color:white;
+    font-size:22px;
+    margin-bottom:6px;
+
+}
+
+.Notification-Content p{
+
+    color:#cbd5e1;
+    font-size:16px;
+    line-height:1.6;
+
+}
+
+.Notification-Content small{
+
+    display:block;
+
+    margin-top:15px;
+
+    color:#60a5fa;
+
+}
+
+.Empty-Notifications{
+
+    background:#1e293b;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:25px;
+
+    padding:70px 30px;
+
+    text-align:center;
+
+}
+
+.Empty-Icon{
+
+    font-size:70px;
+
+    margin-bottom:25px;
+
+}
+
+.Empty-Notifications h2{
+
+    color:white;
+
+    margin-bottom:15px;
+
+}
+
+.Empty-Notifications p{
+
+    color:#94a3b8;
+
+    font-size:17px;
+
+}
+
+@media(max-width:768px){
+
+    .Notifications-Page{
+
+        padding:20px;
+
+    }
+
+    .Notification-Card{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    .Notification-Icon{
+
+        width:65px;
+        height:65px;
+
+        font-size:30px;
+
+    }
+
+    .Notifications-Header h1{
+
+        font-size:32px;
+
+    }
+
+}
+
+/* ==========================================
+                SEARCH
+========================================== */
+
+.Search{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+    padding:40px;
+}
+
+.Search h1{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:35px;
+    color:#fff;
+}
+
+.Search h2{
+    margin:35px 0 25px;
+    color:#cbd5e1;
+    font-size:24px;
+}
+
+/* ==========================
+        BUSCADOR
+========================== */
+
+.Search-Form{
+    display:flex;
+    gap:15px;
+    margin-bottom:40px;
+}
+
+.Search-Form input{
+    flex:1;
+    padding:16px 20px;
+    border:none;
+    border-radius:14px;
+    background:#1e293b;
+    color:white;
+    font-size:16px;
+    outline:none;
+    transition:.3s;
+}
+
+.Search-Form input:focus{
+    box-shadow:0 0 0 2px #3b82f6;
+}
+
+.Search-Form input::placeholder{
+    color:#94a3b8;
+}
+
+.Search-Form button{
+    padding:16px 30px;
+    border:none;
+    border-radius:14px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.Search-Form button:hover{
+    background:#1d4ed8;
+    transform:translateY(-3px);
+}
+
+/* ==========================
+        GRID
+========================== */
+
+.Users-Grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:30px;
+}
+
+/* ==========================
+        TARJETA
+========================== */
+
+.User-Card{
+    background:#1e293b;
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+    transition:.3s;
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.User-Card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 35px rgba(0,0,0,.35);
+}
+
+.User-Card img{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #3b82f6;
+    margin:20px;
+    margin-bottom:13px;
+}
+
+.User-Card h3{
+    font-size:25px;
+    color:white;
+    margin-bottom:8px;
+}
+
+.User-Card p{
+    color:#94a3b8;
+    margin-bottom:15px;
+}
+
+.User-Card a{
+    display:inline-block;
+    padding:11px 18px;
+    background:#2563eb;
+    color:white;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.User-Card a:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+/* ==========================
+        SIN RESULTADOS
+========================== */
+
+.No-Results{
+    grid-column:1/-1;
+    text-align:center;
+    background:#1e293b;
+    padding:40px;
+    border-radius:18px;
+    color:#94a3b8;
+    font-size:18px;
+}
+
+/* ==========================
+        RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+    .Search{
+        padding:20px;
+    }
+
+    .Search h1{
+        font-size:32px;
+    }
+
+    .Search-Form{
+        flex-direction:column;
+    }
+
+    .Search-Form button{
+        width:100%;
+    }
+}
+
+/* ==========================================
+                PROFILE
+========================================== */
+
+.Profile{
+    width:100%;
+    padding:40px;
+    color:#fff;
+}
+
+/* =========================
+        BANNER
+========================= */
+
+.Profile-Banner{
+    width:100%;
+    height:210px;
+    background:linear-gradient(135deg,#2563eb,#1e3a8a,#0f172a);
+    border-radius:25px;
+    position:relative;
+    margin-bottom:40px;
+    overflow:hidden;
+}
+
+.Profile-Avatar{
+    position: absolute;
+
+    width: 140px;
+    height: 140px;
+
+    left: 50%;
+    bottom: 35px;
+    
+    transform: translateX(-308%);
+
+    object-fit: cover;
+    border-radius: 50%;
+
+    border: 6px solid #0f172a;
+    background: #1e293b;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.45),
+        0 0 0 4px #2563eb;
+
+    transition: .35s ease;
+}
+
+.Profile-Avatar:hover{
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.55),
+        0 0 0 5px #3b82f6;
+}
+
+/* =========================
+        CONTENEDOR
+========================= */
+
+.Profile-Container{
+    max-width:1100px;
+    margin:auto;
+}
+
+/* =========================
+        DATOS
+========================= */
+
+.Profile-Container h1{
+    font-size:40px;
+    font-weight:700;
+}
+
+.Profile-Container h3{
+    color:#94a3b8;
+    margin-top:10px;
+    font-weight:500;
+}
+
+.Profile-Container>p{
+    margin-top:20px;
+    color:#cbd5e1;
+    line-height:1.8;
+    font-size:17px;
+}
+
+.Verified{
+    color:#3b82f6;
+    font-size:24px;
+}
+
+/* =========================
+        STATS
+========================= */
+
+.Profile-Stats{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin:45px 0;
+}
+
+.Profile-Stats div{
+    background:#1e293b;
+    width:180px;
+    padding:25px;
+    border-radius:18px;
+    text-align:center;
+    transition:.3s;
+}
+
+.Profile-Stats div:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 30px rgba(0,0,0,.35);
+}
+
+.Profile-Stats h2{
+    color:#3b82f6;
+    font-size:34px;
+}
+
+.Profile-Stats span{
+    color:#cbd5e1;
+}
+
+/* =========================
+        INFO
+========================= */
+
+.Profile-Info{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+    margin-bottom:40px;
+}
+
+.Info-Card{
+    background:#1e293b;
+    border-radius:18px;
+    padding:25px;
+    transition:.3s;
+}
+
+.Info-Card:hover{
+    transform:translateY(-5px);
+}
+
+.Info-Card h3{
+    margin-bottom:15px;
+}
+
+.Info-Card p{
+    color:#cbd5e1;
+}
+
+/* =========================
+        BOTONES
+========================= */
+
+.Edit-Profile-Btn,
+.Follow-Btn{
+    display:inline-block;
+    margin-bottom:35px;
+    padding:14px 215px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+    text-decoration:none;
+}
+
+.Edit-Profile-Btn:hover,
+.Follow-Btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-3px);
+}
+
+.Following{
+    background:#16a34a;
+}
+
+.Following:hover{
+    background:#15803d;
+}
+
+/* =========================
+        TABS
+========================= */
+
+.Profile-Tabs{
+    display:flex;
+    gap:12px;
+    margin-bottom:35px;
+    flex-wrap:wrap;
+}
+
+.Profile-Tabs button{
+    background:#1e293b;
+    color:#cbd5e1;
+    border:none;
+    padding:14px 25px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.Profile-Tabs button:hover{
+    background:#334155;
+}
+
+.Profile-Tabs .Active{
+    background:#2563eb;
+    color:white;
+}
+
+/* =========================
+        POSTS
+========================= */
+
+.Posts{
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+.Post-Card{
+    background:#1e293b;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.05);
+    transition:.3s;
+}
+
+.Post-Card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+
+.Post-Header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:20px;
+}
+
+.Post-Avatar{
+    width:65px;
+    height:65px;
+    object-fit:cover;
+    border-radius:50%;
+    border:3px solid #2563eb;
+}
+
+.Post-Header h3{
+    margin-bottom:5px;
+}
+
+.Post-Header span{
+    color:#94a3b8;
+    font-size:14px;
+}
+
+.Post-Text{
+    padding:0 20px 20px;
+    color:#e2e8f0;
+    line-height:1.8;
+}
+
+.Post-Image{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    margin: 15px auto;
+    object-fit: unset;
+}
+
+.Post-Actions{
+    display:flex;
+    justify-content:space-around;
+    padding:18px;
+    border-top:1px solid rgba(255,255,255,.05);
+}
+
+.Post-Actions button{
+    background:none;
+    border:none;
+    color:#cbd5e1;
+    cursor:pointer;
+    font-size:15px;
+    transition:.3s;
+}
+
+.Post-Actions button:hover{
+    color:#3b82f6;
+    transform:scale(1.05);
+}
+
+/* =========================
+    EDITAR / ELIMINAR
+========================= */
+
+.Post-Owner{
+    display:flex;
+    justify-content:flex-end;
+    gap:15px;
+    padding:18px 20px;
+    border-top:1px solid rgba(255,255,255,.05);
+}
+
+.Post-Owner a{
+    padding:10px 18px;
+    border-radius:10px;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.Post-Owner a:first-child{
+    background:#2563eb;
+}
+
+.Post-Owner a:last-child{
+    background:#dc2626;
+}
+
+.Post-Owner a:hover{
+    transform:translateY(-3px);
+}
+
+/* =========================
+        RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .Profile{
+        padding:20px;
+    }
+
+    .Profile-Banner{
+        width:100%;
+        height:340px;
+
+        position:relative;
+        overflow:visible;
+
+        border-radius:30px;
+        margin-bottom:90px;
+
+        background:
+            linear-gradient(rgba(15,23,42,.35),rgba(15,23,42,.35)),
+            url("/static/images/lebron-banner.jpg");
+
+        background-size:cover;
+        background-position:left center;
+        background-repeat:no-repeat;
+
+        box-shadow:0 15px 40px rgba(0,0,0,.35);
+    }
+
+    .Profile-Avatar{
+        position:absolute;
+
+        width:170px;
+        height:170px;
+
+        left:50%;
+        bottom:-85px;
+        transform:translateX(-50%);
+
+        object-fit:cover;
+        border-radius:50%;
+
+        border:6px solid #0f172a;
+        background:#1e293b;
+
+        box-shadow:
+            0 15px 35px rgba(0,0,0,.45),
+            0 0 0 5px #2563eb;
+
+        transition:.3s;
+    }
+
+    .Profile-Avatar:hover{
+        transform:translateX(-50%) scale(1.05);
+    }
+
+    .Profile-Container{
+        text-align:center;
+    }
+
+    .Profile-Stats{
+        gap:15px;
+    }
+
+    .Profile-Stats div{
+        width:150px;
+    }
+
+    .Post-Actions{
+        flex-wrap:wrap;
+        gap:10px;
+    }
+
+    .Post-Owner{
+        flex-direction:column;
+    }
+}
+
+/* =====================================
+                HOME/POST
+===================================== */
+
+.Feed{
+    width:100%;
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
+}
+
+/* Nueva publicación */
+
+.New-Post{
+    display:inline-block;
+    margin-bottom:30px;
+    padding:14px 24px;
+    background:#2563eb;
+    color:#fff;
+    text-decoration:none;
+    border-radius:12px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.New-Post:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+/* Card */
+
+.Post-Card{
+    background:#1e293b;
+    border-radius:18px;
+    margin-bottom:35px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+/* Cabecera */
+
+.Post-Header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:20px;
+}
+
+.Post-Avatar{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #2563eb;
+}
+
+.Post-Header strong{
+    color:#fff;
+    font-size:18px;
+}
+
+.Post-Header small{
+    color:#94a3b8;
+}
+
+/* Contenido */
+
+.Post-Content{
+    color:#e2e8f0;
+    font-size:16px;
+    line-height:1.7;
+    padding:0 20px 20px;
+}
+
+/* Imagen */
+
+.Post-Image{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    margin: 15px auto;
+    object-fit: unset;
+}
+
+/* Acciones */
+
+.Post-Actions{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 20px;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.Post-Actions form{
+    margin:0;
+}
+
+.Post-Actions button{
+    background:none;
+    border:none;
+    color:#cbd5e1;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+.Post-Actions button:hover{
+    color:#3b82f6;
+}
+
+/* Editar y eliminar */
+
+.Post-Owner-Actions{
+    display:flex;
+    gap:15px;
+}
+
+.Post-Owner-Actions a{
+    text-decoration:none;
+    color:white;
+    font-weight:600;
+    padding:10px 16px;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.Post-Owner-Actions a:first-child{
+    background:#2563eb;
+}
+
+.Post-Owner-Actions a:last-child{
+    background:#dc2626;
+}
+
+.Post-Owner-Actions a:hover{
+    transform:translateY(-2px);
+}
+
+/* Comentarios */
+
+.Comments{
+    padding:20px;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.Comment{
+    background:#0f172a;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+.Comment strong{
+    color:#fff;
+}
+
+.Comment p{
+    color:#cbd5e1;
+    margin:8px 0;
+}
+
+.Comment small{
+    color:#94a3b8;
+}
+
+.No-Comments{
+    color:#94a3b8;
+    font-style:italic;
+}
+
+/* Formulario */
+
+.Comment-Form{
+    display:flex;
+    gap:12px;
+    padding:20px;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.Comment-Form input,
+.Comment-Form textarea{
+    flex:1;
+    background:#0f172a;
+    color:white;
+    border:1px solid #334155;
+    border-radius:10px;
+    padding:12px;
+    resize:none;
+}
+
+.Comment-Form input:focus,
+.Comment-Form textarea:focus{
+    outline:none;
+    border-color:#2563eb;
+}
+
+.Comment-Form button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.Comment-Form button:hover{
+    background:#1d4ed8;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .Feed{
+        padding:15px;
+    }
+
+    .Post-Actions{
+        flex-direction:column;
+        gap:15px;
+        align-items:flex-start;
+    }
+
+    .Post-Owner-Actions{
+        width:100%;
+        justify-content:flex-end;
+    }
+
+    .Comment-Form{
+        flex-direction:column;
+    }
+
+    .Comment-Form button{
+        width:100%;
+    }
+
+}
+
+/* =========================
+        WEBSITE
+========================= */
+
+.Profile-Website{
+    margin:20px 0 30px;
+    font-size:16px;
+    color:#cbd5e1;
+}
+
+.Profile-Website a{
+    color:#3b82f6;
+    text-decoration:none;
+    font-weight:500;
+    word-break:break-all;
+    transition:.3s;
+}
+
+.Profile-Website a:hover{
+    color:#60a5fa;
+    text-decoration:underline;
+}
+
+.Settings{
+    max-width:900px;
+    margin:auto;
+    padding:40px;
+    color:white;
+}
+
+.Settings h1{
+    margin-bottom:30px;
+}
+
+.Settings section{
+    background:#1e293b;
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:25px;
+}
+
+.Settings h2{
+    margin-bottom:20px;
+}
+
+.Settings a{
+    display:block;
+    margin:10px 0;
+    color:#3b82f6;
+    text-decoration:none;
+}
+
+.Settings label{
+    display:block;
+    margin-top:15px;
+}
+
+.Settings input[type="color"]{
+    width:70px;
+    height:45px;
+    border:none;
+    background:none;
+    cursor:pointer;
+}
+
+.Settings button{
+    margin-top:25px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.Settings button:hover{
+    background:#1d4ed8;
+}
+
+.Logout{
+    color:#ef4444 !important;
+    font-weight:bold;
+}
+
+.Settings{
+    max-width:900px;
+    margin:auto;
+    padding:40px;
+    color:white;
+}
+
+.Settings h1{
+    margin-bottom:30px;
+}
+
+.Settings section{
+    background:#1e293b;
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:25px;
+}
+
+.Settings h2{
+    margin-bottom:20px;
+}
+
+.Settings a{
+    display:block;
+    margin:10px 0;
+    color:#3b82f6;
+    text-decoration:none;
+}
+
+.Settings label{
+    display:block;
+    margin-top:15px;
+}
+
+.Settings input[type="color"]{
+    width:70px;
+    height:45px;
+    border:none;
+    background:none;
+    cursor:pointer;
+}
+
+.Settings button{
+    margin-top:25px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.Settings button:hover{
+    background:#1d4ed8;
+}
+
+.Logout{
+    color:#ef4444 !important;
+    font-weight:bold;
+}
+
+.Settings{
+    max-width:950px;
+    margin:auto;
+    padding:40px;
+}
+
+.Settings h1{
+    font-size:40px;
+    margin-bottom:35px;
+    color:white;
+}
+
+.Settings-Card{
+    background:#1e293b;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:30px;
+    margin-bottom:25px;
+    transition:.3s;
+}
+
+.Settings-Card:hover{
+    transform:translateY(-4px);
+    border-color:#3b82f6;
+    box-shadow:0 15px 30px rgba(0,0,0,.25);
+}
+
+.Settings-Card h2{
+    margin-bottom:20px;
+    color:white;
+    font-size:24px;
+}
+
+.Settings a{
+    display:block;
+    color:#60a5fa;
+    text-decoration:none;
+    margin:12px 0;
+    transition:.3s;
+}
+
+.Settings a:hover{
+    color:white;
+    padding-left:8px;
+}
+
+.Settings label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#cbd5e1;
+    margin:15px 0;
+    cursor:pointer;
+}
+
+.Settings input[type="checkbox"]{
+    width:18px;
+    height:18px;
+    accent-color:#3b82f6;
+}
+
+.Settings button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:14px 22px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.Settings button:hover{
+    background:#1d4ed8;
+}
+
+.Danger{
+    background:#dc2626 !important;
+}
+
+.Danger:hover{
+    background:#b91c1c !important;
+}
+
+.Logout{
+    color:#ef4444 !important;
+    font-weight:bold;
+}
+
+.messages{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.alert{
+    background: #22c55e;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.alert.error{
+    background: #ef4444;
+}
+
+.alert.warning{
+    background: #f59e0b;
+}
+
+.alert.info{
+    background: #3b82f6;
+}
+
+/* ===========================
+   PÁGINA DE COMENTARIOS
+=========================== */
+
+.Comments-Page{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    padding:30px;
+}
+
+.Comments-Container{
+    width:100%;
+    max-width:850px;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+/* ===========================
+   PUBLICACIÓN
+=========================== */
+
+.Post-Preview{
+    background:#1e1f29;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+
+.Post-Header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.Post-Avatar{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--app-color);
+}
+
+.Post-Header h3{
+    margin:0;
+    color:#fff;
+}
+
+.Post-Header small{
+    color:#9ca3af;
+}
+
+.Post-Content{
+    color:#e5e7eb;
+    line-height:1.6;
+    margin-bottom:15px;
+}
+
+.Post-Image {
+    width: 60% !important;
+    height: auto !important;
+    max-width: 60% !important;
+    max-height: none !important;
+    border-radius: 15px;
+    object-fit: contain !important;
+    display: block;
+    margin: 15px auto;
+}
+
+/* ===========================
+   FORMULARIO
+=========================== */
+
+.Comment-Box{
+    background:#1e1f29;
+    border-radius:18px;
+    padding:20px;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.Comment-Box h2{
+    margin-bottom:15px;
+    color:#fff;
+}
+
+.Comment-Box textarea{
+    width:100%;
+    min-height:120px;
+    resize:vertical;
+    padding:15px;
+    border-radius:12px;
+    border:none;
+    outline:none;
+    background:#2a2d3a;
+    color:white;
+    font-size:15px;
+    margin-bottom:15px;
+}
+
+.Comment-Box textarea::placeholder{
+    color:#888;
+}
+
+.Comment-Box button{
+    background:var(--app-color);
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.25s;
+}
+
+.Comment-Box button:hover{
+    transform:translateY(-2px);
+    opacity:.9;
+}
+
+/* ===========================
+   LISTA
+=========================== */
+
+.Comments-List{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.Comment-Card{
+    background:#1e1f29;
+    border-radius:18px;
+    padding:18px;
+    border:1px solid rgba(255,255,255,.08);
+    transition:.25s;
+}
+
+.Comment-Card:hover{
+    border-color:var(--app-color);
+    transform:translateY(-2px);
+}
+
+.Comment-Header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.Comment-Header strong{
+    color:#fff;
+}
+
+.Comment-Header small{
+    color:#9ca3af;
+}
+
+.Comment-Card p{
+    color:#ddd;
+    line-height:1.6;
+    margin:0;
+}
+
+/* ===========================
+   SIN COMENTARIOS
+=========================== */
+
+.No-Comments{
+    text-align:center;
+    padding:40px;
+    background:#1e1f29;
+    border-radius:18px;
+    border:2px dashed rgba(255,255,255,.08);
+}
+
+.No-Comments h3{
+    color:#fff;
+    margin-bottom:10px;
+}
+
+.No-Comments p{
+    color:#9ca3af;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+    .Comments-Page{
+        padding:15px;
+    }
+
+    .Post-Preview,
+    .Comment-Box,
+    .Comment-Card{
+        padding:16px;
+    }
+
+    .Post-Avatar{
+        width:45px;
+        height:45px;
+    }
+
+    .Comment-Box button{
+        width:100%;
+    }
+
+}
+
+
+.Post-Card .Post-Image {
+    display: block !important;
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 650px !important;
+    margin: 15px auto !important;
+    object-fit: contain !important;
+    border-radius: 15px !important;
+}
+
+
+
+
+html, body {
+    overflow-x: hidden;
+}
+
+/*==================================
+            POSTS
+==================================*/
+
+.Posts{
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+    margin-top:30px;
+}
+
+.Post-Card{
+    background:#1d2333;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.Post-Card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+
+.Post-Header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:20px;
+}
+
+.Post-Avatar{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #4f7cff;
+}
+
+.Post-Header h3{
+    color:white;
+    margin:0;
+}
+
+.Post-Header span{
+    color:#9aa7c7;
+    font-size:.9rem;
+}
+
+.Post-Text{
+    color:#d7ddeb;
+    line-height:1.8;
+    padding:0 20px 20px;
+}
+
+
+.Post-Actions{
+    display:flex;
+    justify-content:space-around;
+    padding:18px;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.Post-Actions button{
+    background:none;
+    border:none;
+    color:#b8c5e6;
+    cursor:pointer;
+    font-size:15px;
+    transition:.3s;
+}
+
+.Post-Actions button:hover{
+    color:#4f7cff;
+    transform:scale(1.05);
+}
+
+.Message-Btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: 12px;
+    padding: 12px 185px;
+
+    background: #1d9bf0;
+    color: #fff;
+    text-decoration: none;
+
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: .25s ease;
+    cursor: pointer;
+}
+
+.Message-Btn:hover{
+    background: #1784cc;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(29,155,240,.35);
+}
+
+.Message-Btn:active{
+    transform: scale(.98);
+}
+
+/* ===========================
+   CAMBIAR CONTRASEÑA
+=========================== */
+
+.password-page{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:calc(100vh - 80px);
+    padding:40px 20px;
+}
+
+.password-card{
+    width:100%;
+    max-width:520px;
+    background:#1b2434;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+.password-card h1{
+    color:#fff;
+    font-size:30px;
+    margin-bottom:10px;
+    text-align:center;
+}
+
+.password-card p{
+    color:#9ca3af;
+    text-align:center;
+    margin-bottom:30px;
+    font-size:15px;
+}
+
+/* ===========================
+   FORMULARIO
+=========================== */
+
+.password-form p{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:20px;
+}
+
+.password-form label{
+    color:#e5e7eb;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.password-form input{
+    width:100%;
+    padding:14px 16px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:#111827;
+    color:#fff;
+    font-size:15px;
+    transition:.3s;
+    box-sizing:border-box;
+}
+
+.password-form input:focus{
+    border:2px solid #2563eb;
+    box-shadow:0 0 12px rgba(37,99,235,.35);
+}
+
+.password-form ul{
+    margin-top:8px;
+    padding-left:18px;
+    color:#9ca3af;
+    font-size:13px;
+}
+
+.password-form .helptext{
+    color:#9ca3af;
+    font-size:13px;
+}
+
+.password-form .errorlist{
+    list-style:none;
+    padding:0;
+    margin:8px 0;
+    color:#ef4444;
+    font-size:14px;
+}
+
+/* ===========================
+   BOTÓN
+=========================== */
+
+.password-form button{
+    width:100%;
+    padding:15px;
+    margin-top:10px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.password-form button:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(37,99,235,.35);
+}
+
+.password-form button:active{
+    transform:scale(.98);
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width:768px){
+
+    .password-card{
+        padding:25px;
+    }
+
+    .password-card h1{
+        font-size:24px;
+    }
+}
+
+/* ==========================
+   LIMPIAR IMAGEN
+========================== */
+
+#image-clear_id {
+    display: inline-block;
+    vertical-align: 20px;
+}
+
+label[for="image-clear_id"] {
+    display: inline;
+    vertical-align: 20px;
+    margin-left: 5px;
+}

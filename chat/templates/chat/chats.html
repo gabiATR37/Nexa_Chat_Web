@@ -1,0 +1,105 @@
+{% extends "base_app.html" %}
+{% load static %}
+
+{% block title %}
+Chats
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'App_Principal/css/chat.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="chat-page">
+
+    <div class="chat-list">
+
+        <h2>Chats</h2>
+
+        <form method="GET">
+
+            <input
+                type="text"
+                name="q"
+                placeholder="Buscar usuario..."
+                value="{{ buscar }}">
+
+        </form>
+
+        <h3>Conversaciones</h3>
+
+        {% for conversation in conversations %}
+
+            <a
+                href="{% url 'conversacion' conversation.id %}"
+                class="conversation"
+            >
+
+                {% for user in conversation.participants.all %}
+                    {% if user != request.user %}
+
+                        <img
+                            src="{{ user.profile.image.url }}"
+                            class="chat-avatar"
+                            alt="Avatar"
+                        >
+
+                        <div>
+
+                            <strong>
+                                {{ user.profile.display_name|default:user.username }}
+                            </strong>
+
+                            <br>
+
+                            <small>
+                                @{{ user.username }}
+                            </small>
+
+                        </div>
+
+                    {% endif %}
+                {% endfor %}
+
+            </a>
+
+        {% empty %}
+
+            <p>No tienes conversaciones.</p>
+
+        {% endfor %}
+
+        {% if buscar %}
+
+        <hr>
+
+        <h3>Usuarios</h3>
+
+        {% for usuario in usuarios %}
+
+        <a href="{% url 'nuevo_chat' usuario.username %}" class="conversation">
+
+            <img src="{{ usuario.profile.image.url }}"
+                class="chat-avatar">
+
+            <div>
+                <strong>{{ usuario.profile.display_name|default:usuario.username }}</strong><br>
+                <small>@{{ usuario.username }}</small>
+            </div>
+
+        </a>
+
+        {% empty %}
+
+        <p>No se encontraron usuarios.</p>
+
+        {% endfor %}
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,397 @@
+{% extends "base_app.html" %}
+{% load static %}
+
+{% block title %}
+Música | NexaChat
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'App_Principal/css/music.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="Music">
+
+    <!-- Cabecera -->
+
+    <div class="Music-Header">
+
+        <div>
+
+            <h1>🎵 Música</h1>
+
+            <p>
+                Escucha música sin salir de NexaChat.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Buscador -->
+
+    <div class="Music-Search">
+
+        <form method="GET">
+
+            <input
+                type="text"
+                name="q"
+                value="{{ query }}"
+                placeholder="Buscar canciones, artistas, álbumes o playlists..."
+                autocomplete="off">
+
+            <button type="submit">
+
+                🔍 Buscar
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Plataformas -->
+
+    <div class="Music-Platforms">
+
+        <button type="button" id="spotify-btn" class="Platform Active">
+
+            🟢 Spotify
+
+        </button>
+
+        <button type="button" id="youtube-btn" class="Platform">
+
+            🔴 YouTube
+
+        </button>
+
+        <button type="button" id="all-btn" class="Platform">
+
+            🌎 Todas
+
+        </button>
+
+    </div>
+
+    <div class="Music-Content">
+
+        <!-- Sidebar -->
+
+        <aside class="Music-Sidebar">
+
+            <h2>🔥 Tendencias</h2>
+
+            {% if trends %}
+
+                {% for trend in trends %}
+
+                <div class="Trend">
+
+                    <img
+                        src="{{ trend.image }}"
+                        alt="{{ trend.title }}">
+
+                    <div>
+
+                        <strong>{{ trend.title }}</strong>
+
+                        <span>{{ trend.artist }}</span>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p>No hay tendencias.</p>
+
+            {% endif %}
+
+        </aside>
+
+        <!-- Resultados -->
+
+        <main class="Music-Results">
+
+            {% if query %}
+
+                <!-- Canciones -->
+
+                {% if songs %}
+
+                <div class="Results-Section">
+
+                    <h2>🎵 Canciones</h2>
+
+                    {% for song in songs %}
+
+                    <div class="Song-Card">
+
+                        <img
+                            src="{{ song.image }}"
+                            alt="{{ song.title }}">
+
+                        <div class="Song-Info">
+
+                            <strong>{{ song.title }}</strong>
+
+                            <span>{{ song.artist }}</span>
+
+                        </div>
+
+                        <button
+                            class="Play-Song"
+                            data-platform="{{ song.platform }}"
+                            data-id="{{ song.id }}"
+                            data-title="{{ song.title }}"
+                            data-artist="{{ song.artist }}"
+                            data-image="{{ song.image }}">
+
+                            ▶ Escuchar
+
+                        </button>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+                {% endif %}
+
+                <!-- Artistas -->
+
+                {% if artists %}
+
+                <div class="Music-Section">
+
+                    <h2>👤 Artistas</h2>
+
+                    <div class="Related-Artists">
+
+                        {% for artist in artists %}
+
+                        <div class="Related-Card">
+
+                            <img
+                                src="{{ artist.image }}"
+                                alt="{{ artist.name }}">
+
+                            <p>{{ artist.name }}</p>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+                <!-- Álbumes -->
+
+                {% if albums %}
+
+                <div class="Music-Section">
+
+                    <h2>💿 Álbumes</h2>
+
+                    <div class="Albums-Grid">
+
+                        {% for album in albums %}
+
+                        <div class="Album-Card">
+
+                            <img
+                                src="{{ album.image }}"
+                                alt="{{ album.name }}">
+
+                            <h3>{{ album.name }}</h3>
+
+                            <span>{{ album.artist }}</span>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+                <!-- Playlists -->
+
+                {% if playlists %}
+
+                <div class="Music-Section">
+
+                    <h2>🎶 Playlists</h2>
+
+                    <div class="Albums-Grid">
+
+                        {% for playlist in playlists %}
+
+                        <div class="Album-Card">
+
+                            <img
+                                src="{{ playlist.image }}"
+                                alt="{{ playlist.name }}">
+
+                            <h3>{{ playlist.name }}</h3>
+
+                            <span>{{ playlist.owner }}</span>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+                {% if not songs and not artists and not albums and not playlists %}
+
+                <div class="Music-Empty">
+
+                    <h2>😕 No encontramos resultados</h2>
+
+                    <p>
+
+                        No se encontraron resultados para
+                        <strong>"{{ query }}"</strong>.
+
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+            {% else %}
+
+            <div class="Music-Empty">
+
+                <h2>🎵 Bienvenido</h2>
+
+                <p>
+
+                    Busca una canción, artista, álbum o playlist para comenzar.
+
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </main>
+
+    </div>
+
+</section>
+
+<!-- Reproductor oculto -->
+
+<div id="music-player"></div>
+
+<!-- Barra inferior -->
+
+<div
+    class="Player-Bar"
+    id="player-bar">
+
+    <div class="Player-Info">
+
+        <img
+            id="player-cover"
+            src="https://placehold.co/60"
+            alt="Portada">
+
+        <div>
+
+            <strong id="player-title">
+
+                No reproduciendo
+
+            </strong>
+
+            <span id="player-artist">
+
+                Selecciona una canción
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="Player-Controls">
+
+        <button id="previous-song">
+            ⏮
+        </button>
+
+        <button
+            id="play-pause"
+            class="Play">
+
+            ▶
+
+        </button>
+
+        <button id="next-song">
+            ⏭
+        </button>
+
+        <button id="mute">
+            🔊
+        </button>
+
+        <button id="repeat">
+            🔁
+        </button>
+
+        <button id="shuffle">
+            🔀
+        </button>
+
+    </div>
+
+    <div class="Player-Time">
+        <span id="current-time">0:00</span>
+
+        <input
+            id="player-progress"
+            type="range"
+            min="0"
+            max="100"
+            value="0">
+
+        <input
+            id="volume"
+            type="range"
+            min="0"
+            max="100"
+            value="100">
+
+        <span id="duration">0:00</span>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script src="{% static 'music/js/music.js' %}" defer></script>
+
+{% endblock %}

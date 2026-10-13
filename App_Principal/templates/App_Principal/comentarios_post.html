@@ -1,0 +1,121 @@
+{% extends "base_app.html" %}
+{% load static %}
+
+{% block title %}
+Comentarios | NexaChat
+{% endblock %}
+
+{% block content %}
+
+<section class="Comments-Page">
+
+    <div class="Comments-Container">
+
+        <div class="Post-Preview">
+
+            <div class="Post-Header">
+
+                <img src="{{ post.author.profile.image.url }}"
+                     class="Post-Avatar"
+                     alt="Avatar">
+
+                <div>
+                    <h3>
+                        {% if post.author.profile.display_name %}
+                            {{ post.author.profile.display_name }}
+                        {% else %}
+                            {{ post.author.username }}
+                        {% endif %}
+                    </h3>
+
+                    <small>
+                        @{{ post.author.username }}
+                        • {{ post.created_at|timesince }}
+                    </small>
+                </div>
+
+            </div>
+
+            {% if post.content %}
+            <p class="Post-Content">
+                {{ post.content }}
+            </p>
+            {% endif %}
+
+            {% if post.image %}
+            <img src="{{ post.image.url }}"
+                 class="Post-Image"
+                 alt="Imagen">
+            {% endif %}
+
+        </div>
+
+        <div class="Comment-Box">
+
+            <h2>Comentarios ({{ comments.count }})</h2>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.content }}
+
+                <button type="submit">
+                    Publicar comentario
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="Comments-List">
+
+            {% for comment in comments %}
+
+            <div class="Comment-Card">
+
+                <div class="Comment-Header">
+                    <div>
+
+                        <strong>
+
+                            {% if comment.author.profile.display_name %}
+                                {{ comment.author.profile.display_name }}
+                            {% else %}
+                                {{ comment.author.username }}
+                            {% endif %}
+
+                        </strong>
+
+                        <small>
+                            @{{ comment.author.username }}
+                            • {{ comment.created_at|timesince }}
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <p>{{ comment.content }}</p>
+
+            </div>
+
+            {% empty %}
+
+            <div class="No-Comments">
+
+                <h3>Aún no hay comentarios</h3>
+
+                <p>Sé el primero en comentar esta publicación.</p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

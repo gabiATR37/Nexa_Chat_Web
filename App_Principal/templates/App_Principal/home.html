@@ -1,0 +1,133 @@
+{% extends "base_app.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'App_Principal/css/style.css' %}">
+{% endblock %}
+
+{% block title %}
+Inicio - NexaChat
+{% endblock %}
+
+{% block content %}
+
+<div class="Feed">
+
+    <a href="{% url 'create_post' %}" class="New-Post">
+        + Nueva publicación
+    </a>
+
+    {% for post in posts %}
+
+    <div class="Post-Card">
+
+        <!-- CABECERA -->
+        <div class="Post-Header">
+
+            <img
+                src="{{ post.author.profile.image.url }}"
+                class="Post-Avatar"
+                alt="Avatar">
+
+            <div>
+
+                <strong>
+                    {{ post.author.username }}
+                </strong>
+
+                <br>
+
+                <small>
+                    {{ post.created_at|date:"d/m/Y H:i" }}
+                </small>
+
+            </div>
+
+        </div>
+
+        <!-- CONTENIDO -->
+        {% if post.content %}
+
+        <p class="Post-Content">
+            {{ post.content }}
+        </p>
+
+        {% endif %}
+
+
+        <!-- IMAGEN -->
+        {% if post.image %}
+
+        <div class="Post-Image-Container">
+
+            <img
+                src="{{ post.image.url }}"
+                class="Post-Image"
+                alt="Imagen de la publicación">
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- ACCIONES -->
+        <div class="Post-Actions">
+
+            <form
+                action="{% url 'toggle_like' post.id %}"
+                method="POST">
+
+                {% csrf_token %}
+
+                <button type="submit">
+                    ❤️ {{ post.likes.count }}
+                </button>
+
+            </form>
+
+
+            <a href="{% url 'post_comments' post.id %}">
+                💬 {{ post.comments.count }}
+            </a>
+
+
+            {% if request.user == post.author %}
+
+            <div class="Post-Owner-Actions">
+
+                <a href="{% url 'edit_post' post.id %}">
+                    ✏️ Editar
+                </a>
+
+                <a href="{% url 'delete_post' post.id %}">
+                    🗑️ Eliminar
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="Post-Card">
+
+        <h3>
+            No hay publicaciones todavía.
+        </h3>
+
+        <p>
+            ¡Sé el primero en publicar algo!
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,149 @@
+{% extends "base_app.html" %}
+{% load static %}
+
+{% block title %}
+{{ album.name }} | NexaChat
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'App_Principal/css/music.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="Album">
+
+    <div class="Album-Header">
+
+        <img
+            class="Album-Cover"
+            src="{{ album.image }}"
+            alt="{{ album.name }}">
+
+        <div class="Album-Info">
+
+            <span class="Album-Type">
+                💿 Álbum
+            </span>
+
+            <h1>{{ album.name }}</h1>
+
+            <p>
+
+                {{ album.artist }}
+
+                {% if album.release_year %}
+                    • {{ album.release_year }}
+                {% endif %}
+
+                {% if album.total_tracks %}
+                    • {{ album.total_tracks }} canciones
+                {% endif %}
+
+            </p>
+
+            {% if album.label %}
+            <p>{{ album.label }}</p>
+            {% endif %}
+
+            <div class="Album-Actions">
+
+                <button class="Play-Btn">
+                    ▶ Reproducir
+                </button>
+
+                <button class="Follow-Btn">
+                    ❤ Guardar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="Music-Section">
+
+        <h2>Canciones</h2>
+
+        {% if tracks %}
+
+            {% for track in tracks %}
+
+            <div class="Track">
+
+                <span>{{ forloop.counter }}</span>
+
+                <div>
+
+                    <strong>{{ track.title }}</strong>
+
+                    <p>
+
+                        {% if track.duration %}
+                            {{ track.duration }}
+                        {% elif track.artist %}
+                            {{ track.artist }}
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+                <button
+                    class="Play-Song"
+                    data-platform="{{ track.platform }}"
+                    data-id="{{ track.id }}"
+                    data-title="{{ track.title }}"
+                    data-artist="{{ track.artist }}"
+                    data-image="{{ track.image }}">
+
+                    ▶
+
+                </button>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>No hay canciones disponibles.</p>
+
+        {% endif %}
+
+    </div>
+
+    {% if similar_albums %}
+
+    <div class="Music-Section">
+
+        <h2>Más álbumes</h2>
+
+        <div class="Albums-Grid">
+
+            {% for item in similar_albums %}
+
+            <div class="Album-Card">
+
+                <img
+                    src="{{ item.image }}"
+                    alt="{{ item.name }}">
+
+                <h3>{{ item.name }}</h3>
+
+                <span>{{ item.release_year }}</span>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

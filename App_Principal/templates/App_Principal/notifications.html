@@ -1,0 +1,103 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+Notificaciones | NexaChat
+{% endblock %}
+
+{% block content %}
+
+<div class="Notifications-Page">
+
+    <div class="Notifications-Header">
+        <h1>🔔 Notificaciones</h1>
+        <p>Todas las interacciones recientes de tu cuenta.</p>
+    </div>
+
+    {% if notifications %}
+
+        {% for notification in notifications %}
+
+        <div class="Notification-Card">
+
+            <div class="Notification-Icon">
+
+                {% if notification.notification_type == "like" %}
+                    ❤️
+
+                {% elif notification.notification_type == "comment" %}
+                    💬
+
+                {% elif notification.notification_type == "follow" %}
+                    👤
+
+                {% else %}
+                    🔔
+                {% endif %}
+
+            </div>
+
+            <div class="Notification-Content">
+
+                {% if notification.notification_type == "like" %}
+
+                    <h3>
+                        {{ notification.sender.username }}
+                    </h3>
+
+                    <p>
+                        le dio me gusta a tu publicación.
+                    </p>
+
+                {% elif notification.notification_type == "comment" %}
+
+                    <h3>
+                        {{ notification.sender.username }}
+                    </h3>
+
+                    <p>
+                        comentó tu publicación.
+                    </p>
+
+                {% elif notification.notification_type == "follow" %}
+
+                    <h3>
+                        {{ notification.sender.username }}
+                    </h3>
+
+                    <p>
+                        comenzó a seguirte.
+                    </p>
+
+                {% endif %}
+
+                <small>
+                    Hace {{ notification.created_at|timesince }}
+                </small>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+    <div class="Empty-Notifications">
+
+        <div class="Empty-Icon">
+            🔔
+        </div>
+
+        <h2>No tienes notificaciones</h2>
+
+        <p>
+            Cuando alguien interactúe contigo aparecerá aquí.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

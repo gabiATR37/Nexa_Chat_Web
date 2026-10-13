@@ -1,0 +1,143 @@
+{% extends "base_app.html" %}
+{% load static %}
+
+{% block title %}
+{{ playlist.name }} | NexaChat
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'App_Principal/css/music.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="Playlist">
+
+    <div class="Playlist-Header">
+
+        <img
+            class="Playlist-Cover"
+            src="{{ playlist.image }}"
+            alt="{{ playlist.name }}">
+
+        <div class="Playlist-Info">
+
+            <span class="Playlist-Type">
+                🎵 Playlist
+            </span>
+
+            <h1>{{ playlist.name }}</h1>
+
+            <p>
+
+                {% if playlist.owner %}
+                    Creada por {{ playlist.owner }}
+                {% endif %}
+
+            </p>
+
+            <p>
+
+                {% if playlist.total_tracks %}
+                    {{ playlist.total_tracks }} canciones
+                {% endif %}
+
+            </p>
+
+            {% if playlist.description %}
+                <p>{{ playlist.description }}</p>
+            {% endif %}
+
+            <div class="Playlist-Actions">
+
+                <button class="Play-Btn">
+                    ▶ Reproducir
+                </button>
+
+                <button class="Follow-Btn">
+                    ❤ Guardar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="Music-Section">
+
+        <h2>Canciones</h2>
+
+        {% if tracks %}
+
+            {% for track in tracks %}
+
+            <div class="Track">
+
+                <span>{{ forloop.counter }}</span>
+
+                <div>
+
+                    <strong>{{ track.title }}</strong>
+
+                    <p>{{ track.artist }}</p>
+
+                </div>
+
+                <button
+                    class="Play-Song"
+                    data-platform="{{ track.platform }}"
+                    data-id="{{ track.id }}"
+                    data-title="{{ track.title }}"
+                    data-artist="{{ track.artist }}"
+                    data-image="{{ track.image }}">
+
+                    ▶
+
+                </button>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>Esta playlist no tiene canciones.</p>
+
+        {% endif %}
+
+    </div>
+
+    {% if related_playlists %}
+
+    <div class="Music-Section">
+
+        <h2>Playlists recomendadas</h2>
+
+        <div class="Albums-Grid">
+
+            {% for item in related_playlists %}
+
+            <div class="Album-Card">
+
+                <img
+                    src="{{ item.image }}"
+                    alt="{{ item.name }}">
+
+                <h3>{{ item.name }}</h3>
+
+                <span>{{ item.owner }}</span>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

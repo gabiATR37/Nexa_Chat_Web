@@ -1,0 +1,198 @@
+{% extends "base_app.html" %}
+{% load static %}
+
+{% block title %}
+Buscar música | NexaChat
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'App_Principal/css/music.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="Search-Page">
+
+    <div class="Search-Header">
+
+        <h1>Resultados de búsqueda</h1>
+
+        {% if query %}
+            <p>Mostrando resultados para <strong>"{{ query }}"</strong></p>
+        {% else %}
+            <p>Escribe una búsqueda para comenzar.</p>
+        {% endif %}
+
+    </div>
+
+    {% if query %}
+
+    <div class="Search-Results">
+
+        <!-- Canciones -->
+
+        {% if songs %}
+
+        <div class="Music-Section">
+
+            <h2>🎵 Canciones</h2>
+
+            {% for song in songs %}
+
+            <div class="Song-Card">
+
+                <img
+                    src="{{ song.image }}"
+                    alt="{{ song.title }}">
+
+                <div class="Song-Info">
+
+                    <strong>{{ song.title }}</strong>
+
+                    <span>{{ song.artist }}</span>
+
+                </div>
+
+                <button
+                    class="Play-Song"
+                    data-platform="{{ song.platform }}"
+                    data-id="{{ song.id }}"
+                    data-title="{{ song.title }}"
+                    data-artist="{{ song.artist }}"
+                    data-image="{{ song.image }}">
+
+                    ▶ Escuchar
+
+                </button>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+        <!-- Artistas -->
+
+        {% if artists %}
+
+        <div class="Music-Section">
+
+            <h2>👤 Artistas</h2>
+
+            <div class="Related-Artists">
+
+                {% for artist in artists %}
+
+                <div class="Related-Card">
+
+                    <img
+                        src="{{ artist.image }}"
+                        alt="{{ artist.name }}">
+
+                    <p>{{ artist.name }}</p>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+        <!-- Álbumes -->
+
+        {% if albums %}
+
+        <div class="Music-Section">
+
+            <h2>💿 Álbumes</h2>
+
+            <div class="Albums-Grid">
+
+                {% for album in albums %}
+
+                <div class="Album-Card">
+
+                    <img
+                        src="{{ album.image }}"
+                        alt="{{ album.name }}">
+
+                    <h3>{{ album.name }}</h3>
+
+                    <span>{{ album.artist }}</span>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+        <!-- Playlists -->
+
+        {% if playlists %}
+
+        <div class="Music-Section">
+
+            <h2>🎶 Playlists</h2>
+
+            <div class="Albums-Grid">
+
+                {% for playlist in playlists %}
+
+                <div class="Album-Card">
+
+                    <img
+                        src="{{ playlist.image }}"
+                        alt="{{ playlist.name }}">
+
+                    <h3>{{ playlist.name }}</h3>
+
+                    <span>{{ playlist.owner }}</span>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+        {% if not songs and not artists and not albums and not playlists %}
+
+        <div class="Music-Empty">
+
+            <h2>😕 Sin resultados</h2>
+
+            <p>No encontramos resultados para <strong>{{ query }}</strong>.</p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    {% else %}
+
+    <div class="Music-Empty">
+
+        <h2>🎵 Buscar música</h2>
+
+        <p>Busca canciones, artistas, álbumes o playlists.</p>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

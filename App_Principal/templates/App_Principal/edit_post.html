@@ -1,0 +1,27 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+Editar publicación
+{% endblock %}
+
+{% block content %}
+
+<div class="Create-Post">
+
+    <h1>Editar publicación</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Guardar cambios
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

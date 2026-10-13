@@ -1,0 +1,26 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+Nueva publicación
+{% endblock %}
+
+{% block content %}
+
+<div class="Create-Post">
+
+    <h2>Nueva publicación</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            🚀 Publicar
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

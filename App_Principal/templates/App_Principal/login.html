@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Login | NexaChat
+{% endblock %}
+
+{% block content %}
+
+<section class="Login">
+
+    <div class="Login-Card">
+
+        <h1 class="Logo">
+            Nexa<span>Chat</span>
+        </h1>
+
+        <h2>¡Bienvenido de nuevo!</h2>
+
+        <p class="Subtitle">
+            Inicia sesión para continuar en NexaChat.
+        </p>
+
+        {% if messages %}
+            {% for message in messages %}
+
+                {% if message.tags == "success" %}
+                    <div class="Alert Alert-Success">
+                        ✅ {{ message }}
+                    </div>
+
+                {% elif message.tags == "error" %}
+                    <div class="Alert Alert-Error">
+                        ⚠️ {{ message }}
+                    </div>
+
+                {% endif %}
+
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="Input-Group">
+
+                <label>Usuario o correo</label>
+
+                <div class="Input">
+
+                    <span class="Icon">👤</span>
+
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Ingresa tu usuario"
+                        value="{{ request.POST.username }}"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="Input-Group">
+
+                <label>Contraseña</label>
+
+                <div class="Input">
+
+                    <span class="Icon">🔒</span>
+
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="Ingresa tu contraseña"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="ShowPassword"
+                        onclick="togglePassword()">
+
+                        👁
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="Forgot-Container">
+
+                <a href="#" class="Forgot">
+
+                    ¿Olvidaste tu contraseña?
+
+                </a>
+
+            </div>
+
+            <button class="Login-Button">
+
+                Iniciar sesión
+
+            </button>
+
+        </form>
+
+        <div class="Divider">
+
+            <span>o</span>
+
+        </div>
+
+        <div class="Register">
+
+            ¿No tienes una cuenta?
+
+            <a href="{% url 'register' %}">
+
+                Crear una cuenta
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+
+function togglePassword(){
+
+    const input = document.getElementById("password");
+
+    if(input.type==="password"){
+
+        input.type="text";
+
+    }else{
+
+        input.type="password";
+
+    }
+
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+        document.querySelectorAll(".Alert").forEach(function (alert) {
+            alert.remove();
+        });
+    }, 3000);
+});
+
+</script>
+
+{% endblock %}

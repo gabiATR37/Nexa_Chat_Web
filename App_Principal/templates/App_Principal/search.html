@@ -1,0 +1,71 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+Buscar usuarios
+{% endblock %}
+
+{% block content %}
+
+<section class="Search">
+
+    <h1>🔍 Buscar usuarios</h1>
+
+    <form method="GET" class="Search-Form">
+
+        <input
+            type="text"
+            name="q"
+            placeholder="Buscar usuario..."
+            value="{{ query }}"
+        >
+
+        <button type="submit">
+            Buscar
+        </button>
+
+    </form>
+
+    {% if query %}
+        <h2>Resultados para "{{ query }}"</h2>
+    {% endif %}
+
+    <div class="Users-Grid">
+
+        {% for user in users %}
+
+        <div class="User-Card">
+
+            <img
+                src="{{ user.profile.image.url }}"
+                alt="{{ user.username }}"
+            >
+
+            <h3>
+                {% if user.profile.display_name %}
+                    {{ user.profile.display_name }}
+                {% else %}
+                    {{ user.username }}
+                {% endif %}
+            </h3>
+
+            <p>@{{ user.username }}</p>
+
+            <a href="{% url 'profile' user.username %}">
+                Ver perfil
+            </a>
+
+        </div>
+
+        {% empty %}
+
+        <p class="No-Results">
+            No se encontraron usuarios.
+        </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

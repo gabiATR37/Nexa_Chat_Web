@@ -1,0 +1,199 @@
+{% extends "base_app.html" %}
+{% load static %}
+
+{% block title %}
+{{ artist.name }} | NexaChat
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'App_Principal/css/music.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="Artist">
+
+    <!-- Banner -->
+
+    <div class="Artist-Banner">
+
+        <img
+            src="{{ artist.banner|default:artist.image }}"
+            alt="{{ artist.name }}">
+
+    </div>
+
+    <!-- Información -->
+
+    <div class="Artist-Header">
+
+        <img
+            class="Artist-Avatar"
+            src="{{ artist.image }}"
+            alt="{{ artist.name }}">
+
+        <div class="Artist-Info">
+
+            <h1>
+
+                {{ artist.name }}
+
+                {% if artist.verified %}
+                    <span class="Verified">✔</span>
+                {% endif %}
+
+            </h1>
+
+            <p class="Artist-Type">
+
+                {% if artist.verified %}
+                    Artista verificado
+                {% else %}
+                    Artista
+                {% endif %}
+
+            </p>
+
+            <p class="Artist-Stats">
+
+                {% if artist.followers %}
+                    {{ artist.followers }} seguidores
+                {% endif %}
+
+                {% if artist.genres %}
+                    • {{ artist.genres|join:", " }}
+                {% endif %}
+
+            </p>
+
+            <div class="Artist-Actions">
+
+                <button class="Play-Btn">
+
+                    ▶ Reproducir
+
+                </button>
+
+                <button class="Follow-Btn">
+
+                    + Seguir
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Canciones -->
+
+    <div class="Music-Section">
+
+        <h2>Canciones populares</h2>
+
+        {% if top_tracks %}
+
+            {% for track in top_tracks %}
+
+                <div class="Track">
+
+                    <span>{{ forloop.counter }}</span>
+
+                    <div>
+
+                        <strong>{{ track.title }}</strong>
+
+                        <p>{{ track.album }}</p>
+
+                    </div>
+
+                    <button
+                        class="Play-Song"
+                        data-platform="{{ track.platform }}"
+                        data-id="{{ track.id }}"
+                        data-title="{{ track.title }}"
+                        data-artist="{{ artist.name }}"
+                        data-image="{{ track.image }}">
+
+                        ▶
+
+                    </button>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>No hay canciones disponibles.</p>
+
+        {% endif %}
+
+    </div>
+
+    <!-- Álbumes -->
+
+    <div class="Music-Section">
+
+        <h2>Álbumes</h2>
+
+        <div class="Albums-Grid">
+
+            {% for album in albums %}
+
+                <div class="Album-Card">
+
+                    <img
+                        src="{{ album.image }}"
+                        alt="{{ album.name }}">
+
+                    <h3>{{ album.name }}</h3>
+
+                    <span>{{ album.release_year }}</span>
+
+                </div>
+
+            {% empty %}
+
+                <p>No hay álbumes.</p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <!-- Relacionados -->
+
+    <div class="Music-Section">
+
+        <h2>Artistas relacionados</h2>
+
+        <div class="Related-Artists">
+
+            {% for related in related_artists %}
+
+                <div class="Related-Card">
+
+                    <img
+                        src="{{ related.image }}"
+                        alt="{{ related.name }}">
+
+                    <p>{{ related.name }}</p>
+
+                </div>
+
+            {% empty %}
+
+                <p>No hay artistas relacionados.</p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

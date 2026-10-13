@@ -1,0 +1,33 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+Eliminar publicación
+{% endblock %}
+
+{% block content %}
+
+<div class="Delete-Post">
+
+    <h2>¿Eliminar publicación?</h2>
+
+    <p>
+        Esta acción no se puede deshacer.
+    </p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button type="submit">
+            🗑 Sí, eliminar
+        </button>
+
+        <a href="{% url 'profile' request.user.username %}">
+            Cancelar
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

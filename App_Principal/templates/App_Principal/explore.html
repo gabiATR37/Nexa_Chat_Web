@@ -1,0 +1,115 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+Explorar | NexaChat
+{% endblock %}
+
+{% block content %}
+
+<div class="Container">
+
+    <h2>🔍 Explorar</h2>
+
+    <!-- BUSCADOR -->
+    <form method="GET" action="{% url 'explore' %}" class="Search-Form">
+
+        <input
+            type="text"
+            name="q"
+            placeholder="Buscar usuarios..."
+            value="{{ query }}"
+        >
+
+        <button type="submit">
+            Buscar
+        </button>
+
+    </form>
+
+    <br>
+
+    {% if query %}
+
+        <h3>Resultados para "{{ query }}"</h3>
+
+        {% if users %}
+
+            {% for profile in users %}
+
+                <div class="User-Card">
+
+                    <img src="{{ profile.image.url }}" alt="Foto">
+
+                    <div>
+
+                        <strong>{{ profile.user.username }}</strong>
+
+                        {% if profile.display_name %}
+                            <p>{{ profile.display_name }}</p>
+                        {% endif %}
+
+                        <a href="{% url 'profile' profile.user.username %}">
+                            Ver perfil
+                        </a>
+
+                    </div>
+
+</div>
+
+                <hr>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>No se encontraron usuarios.</p>
+
+        {% endif %}
+
+        <hr>
+
+    {% endif %}
+
+    <h3>Publicaciones recientes</h3>
+
+    {% if posts %}
+
+        {% for post in posts %}
+
+            <div class="Post">
+
+                <h3>{{ post.author.username }}</h3>
+
+                <p>{{ post.content }}</p>
+
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="Imagen" class="Post-Image">
+                {% endif %}
+
+                <br>
+
+                <small>
+                    {{ post.created_at|timesince }} atrás
+                </small>
+
+                <br><br>
+
+                <a href="{% url 'profile' post.author.username %}">
+                    Ver perfil
+                </a>
+
+            </div>
+
+            <hr>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No hay publicaciones para mostrar.</p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

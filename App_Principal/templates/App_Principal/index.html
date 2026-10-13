@@ -1,0 +1,821 @@
+{% extends 'base.html' %}
+
+{% block title %}
+NexaChat | Bienvenido
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<!-- HERO -->
+<section class="Hero">
+
+    <div class="Hero-TopText">
+        ✨ Descubrí todo lo que NexaChat tiene para ofrecer explora hacia abajo 🡻
+    </div>
+
+    
+
+    <div class="Hero-Left">
+
+        <span class="Hero-Badge">
+            🚀 La nueva forma de conectar personas
+        </span>
+
+        <h1>
+            Bienvenido a
+            <span>NexaChat</span>
+        </h1>
+
+        <p class="Hero-Description">
+            Descubre una plataforma donde podrás conversar,
+            crear comunidades, compartir publicaciones,
+            escuchar música, mirar videos y conocer personas
+            con tus mismos intereses.
+        </p>
+
+        <div class="Hero-Stats">
+            <div class="Hero-Stat">
+                <strong>+10k</strong>
+                <span>usuarios activos</span>
+            </div>
+            <div class="Hero-Stat">
+                <strong>4.9/5</strong>
+                <span>experiencia</span>
+            </div>
+            <div class="Hero-Stat">
+                <strong>100%</strong>
+                <span>gratis para empezar</span>
+            </div>
+        </div>
+
+        <div class="Hero-Buttons">
+
+            {% if user.is_authenticated %}
+
+            <a href="{% url 'home' %}" class="Btn-Login">
+                Ir al Inicio
+            </a>
+
+            {% else %}
+
+            <a href="{% url 'register' %}" class="Btn-Login">
+                Comenzar Ahora
+            </a>
+
+            <a href="{% url 'login' %}" class="Btn-Register">
+                Iniciar Sesión
+            </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <div class="Hero-Right">
+
+        <div class="Preview">
+
+            <div class="Preview-Header">
+                NexaChat
+            </div>
+
+            <div class="Preview-Body">
+
+                <div class="Preview-Card">
+                    💬 Nuevo mensaje de Sofía
+                </div>
+
+                <div class="Preview-Card">
+                    🎵 Lucas está escuchando Imagine Dragons
+                </div>
+
+                <div class="Preview-Card">
+                    📸 Martina publicó una historia
+                </div>
+
+                <div class="Preview-Card">
+                    🎮 Gaming World tiene 458 usuarios conectados
+                </div>
+
+                <div class="Preview-Card">
+                    🔥 Nuevo video recomendado para ti
+                </div>
+
+            </div>
+
+        </div>
+    
+    </a>
+
+</section>
+
+<!-- FEATURES -->
+
+<section id="features" class="Features">
+    <div class="Features-Intro">
+        <h2>
+            Todo lo que necesitas en un solo lugar
+        </h2>
+
+        <p class="Section-Text">
+            NexaChat reúne chats, comunidades, historias, música y videos en un
+            espacio pensado para que tu experiencia sea fluida, social y más entretenida.
+        </p>
+    </div>
+
+    <div class="Cards">
+
+        <div class="Card">
+
+            <div class="Card-Icon">
+                💬
+            </div>
+
+            <h3>Chats Privados</h3>
+
+            <p>
+                Conversa en tiempo real con amigos,
+                compañeros y nuevos contactos.
+            </p>
+
+        </div>
+
+        <div class="Card">
+
+            <div class="Card-Icon">
+                👥
+            </div>
+
+            <h3>Comunidades</h3>
+
+            <p>
+                Crea o únete a comunidades
+                sobre videojuegos, tecnología,
+                música y mucho más.
+            </p>
+
+        </div>
+
+        <div class="Card">
+
+            <div class="Card-Icon">
+                📸
+            </div>
+
+            <h3>Historias</h3>
+
+            <p>
+                Comparte momentos que
+                desaparecen después de 24 horas.
+            </p>
+
+        </div>
+
+        <div class="Card">
+
+            <div class="Card-Icon">
+                📝
+            </div>
+
+            <h3>Publicaciones</h3>
+
+            <p>
+                Comparte ideas,
+                imágenes y noticias con toda
+                la comunidad.
+            </p>
+
+        </div>
+
+        <div class="Card">
+
+            <div class="Card-Icon">
+                🎵
+            </div>
+
+            <h3>Música</h3>
+
+            <p>
+                Comparte lo que escuchas
+                y descubre nuevos artistas.
+            </p>
+
+        </div>
+
+        <div class="Card">
+
+            <div class="Card-Icon">
+                🎥
+            </div>
+
+            <h3>Videos</h3>
+
+            <p>
+                Descubre contenido recomendado
+                según tus intereses.
+            </p>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+<section class="Experience">
+
+    <div class="Experience-Left">
+
+        <span class="Experience-Tag">
+
+            EXPERIENCIA NEXACHAT
+
+        </span>
+
+        <h2>
+
+            Una sola plataforma.
+
+            <span>Infinitas posibilidades.</span>
+
+        </h2>
+
+        <p>
+
+            NexaChat reúne lo mejor de las redes sociales
+            modernas para que puedas comunicarte,
+            descubrir contenido y crear comunidades
+            sin cambiar constantemente de aplicación.
+
+        </p>
+
+        <ul>
+
+            <li>✔ Conversaciones privadas y grupales.</li>
+
+            <li>✔ Publicaciones para compartir ideas.</li>
+
+            <li>✔ Comunidades organizadas por intereses.</li>
+
+            <li>✔ Historias y contenido efímero.</li>
+
+            <li>✔ Música integrada en tu perfil.</li>
+
+        </ul>
+
+    </div>
+
+    <div class="Experience-Right">
+
+        <div class="Experience-Box">
+
+            🌍
+
+            <h3>Conecta con personas</h3>
+
+            <p>
+
+                Descubre personas con tus mismos gustos
+                desde cualquier parte del mundo.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MOCKUP -->
+
+<section class="Mockup">
+
+    <div class="Mockup-Title">
+
+        <span>VISTA PREVIA</span>
+
+        <h2>
+            Así se verá tu experiencia en NexaChat
+        </h2>
+
+        <p>
+            Chats, comunidades, publicaciones, historias y música.
+            Todo integrado en una sola plataforma.
+        </p>
+
+    </div>
+
+    <div class="App-Mockup">
+
+        <!-- Sidebar -->
+
+        <aside class="Sidebar">
+
+            <h3>NexaChat</h3>
+
+            <div class="Sidebar-Item Active">
+                💬 Chats
+            </div>
+
+            <div class="Sidebar-Item">
+                🏠 Inicio
+            </div>
+
+            <div class="Sidebar-Item">
+                📸 Historias
+            </div>
+
+            <div class="Sidebar-Item">
+                👥 Comunidades
+            </div>
+
+            <div class="Sidebar-Item">
+                🎵 Música
+            </div>
+
+            <div class="Sidebar-Item">
+                ⚙ Configuración
+            </div>
+
+        </aside>
+
+        <!-- Feed -->
+
+        <main class="Feed">
+
+            <div class="Feed-Header">
+
+                <input
+                    type="text"
+                    placeholder="Buscar personas, comunidades..."
+                >
+
+            </div>
+
+            <div class="Story-Bar">
+
+                <div class="Story">📸</div>
+                <div class="Story">🎮</div>
+                <div class="Story">🎵</div>
+                <div class="Story">🏖</div>
+                <div class="Story">🔥</div>
+
+            </div>
+
+            <div class="Post">
+
+                <h4>Lucas compartió una publicación</h4>
+
+                <p>
+
+                    ¡Bienvenidos a NexaChat!
+                    Hoy comenzamos una nueva comunidad.
+
+                </p>
+
+            </div>
+
+            <div class="Post">
+
+                <h4>María compartió una canción</h4>
+
+                <p>
+
+                    🎵 Blinding Lights - The Weeknd
+
+                </p>
+
+            </div>
+
+        </main>
+
+        <!-- Amigos -->
+
+        <aside class="Friends">
+
+            <h3>En línea</h3>
+
+            <div class="Friend">
+
+                <span class="Dot"></span>
+
+                Sofía
+
+            </div>
+
+            <div class="Friend">
+
+                <span class="Dot"></span>
+
+                Pedro
+
+            </div>
+
+            <div class="Friend">
+
+                <span class="Dot"></span>
+
+                Martina
+
+            </div>
+
+            <div class="Friend">
+
+                <span class="Dot"></span>
+
+                Nicolás
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</section>
+
+<section class="Universe">
+
+    <div class="Universe-Title">
+
+        <span>TODO EN UNO</span>
+
+        <h2>Todo un universo en un solo lugar</h2>
+
+        <p>
+            NexaChat combina comunicación, entretenimiento y comunidades
+            para que no tengas que cambiar de aplicación.
+        </p>
+
+    </div>
+
+    <div class="Universe-Grid">
+
+        <div class="Universe-Card">
+            <div class="Universe-Icon">💬</div>
+            <h3>Chats</h3>
+            <p>Habla en tiempo real con amigos o grupos.</p>
+        </div>
+
+        <div class="Universe-Card">
+            <div class="Universe-Icon">👥</div>
+            <h3>Comunidades</h3>
+            <p>Crea espacios para compartir tus intereses.</p>
+        </div>
+
+        <div class="Universe-Card">
+            <div class="Universe-Icon">📸</div>
+            <h3>Historias</h3>
+            <p>Comparte momentos que desaparecen en 24 horas.</p>
+        </div>
+
+        <div class="Universe-Card">
+            <div class="Universe-Icon">🎵</div>
+            <h3>Música</h3>
+            <p>Escucha y comparte tus canciones favoritas.</p>
+        </div>
+
+        <div class="Universe-Card">
+            <div class="Universe-Icon">🎬</div>
+            <h3>Videos</h3>
+            <p>Descubre contenido recomendado para vos.</p>
+        </div>
+
+        <div class="Universe-Card">
+            <div class="Universe-Icon">📰</div>
+            <h3>Publicaciones</h3>
+            <p>Comparte ideas, imágenes y experiencias.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="Stats">
+
+    <div class="Stats-Title">
+
+        <span>NEXACHAT EN NÚMEROS</span>
+
+        <h2>Una comunidad que no deja de crecer</h2>
+
+        <p>
+            Miles de personas podrán conectarse, compartir contenido
+            y crear comunidades dentro de una sola plataforma.
+        </p>
+
+    </div>
+
+    <div class="Stats-Grid">
+
+        <div class="Stat-Card">
+
+            <h3>10K+</h3>
+
+            <p>Usuarios</p>
+
+        </div>
+
+        <div class="Stat-Card">
+
+            <h3>500+</h3>
+
+            <p>Comunidades</p>
+
+        </div>
+
+        <div class="Stat-Card">
+
+            <h3>1M+</h3>
+
+            <p>Mensajes enviados</p>
+
+        </div>
+
+        <div class="Stat-Card">
+
+            <h3>24/7</h3>
+
+            <p>Conectados</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="Testimonials">
+
+    <div class="Testimonials-Title">
+
+        <span>COMUNIDAD</span>
+
+        <h2>Lo que dicen nuestros usuarios</h2>
+
+        <p>
+            Miles de personas ya disfrutan de una nueva forma de
+            comunicarse, compartir contenido y conocer gente.
+        </p>
+
+    </div>
+
+    <div class="Testimonials-Grid">
+
+        <div class="Testimonial">
+
+            <div class="Avatar">
+                👨
+            </div>
+
+            <h3>Lucas Fernández</h3>
+
+            <span class="Role">
+                Gamer
+            </span>
+
+            <p>
+
+                "NexaChat reúne todo lo que uso todos los días.
+                Ya no tengo que cambiar entre varias aplicaciones."
+
+            </p>
+
+            <div class="Stars">
+
+                ⭐⭐⭐⭐⭐
+
+            </div>
+
+        </div>
+
+        <div class="Testimonial">
+
+            <div class="Avatar">
+                👩
+            </div>
+
+            <h3>Sofía Gómez</h3>
+
+            <span class="Role">
+                Estudiante
+            </span>
+
+            <p>
+
+                "Las comunidades son increíbles y los chats
+                funcionan de manera muy rápida."
+
+            </p>
+
+            <div class="Stars">
+
+                ⭐⭐⭐⭐⭐
+
+            </div>
+
+        </div>
+
+        <div class="Testimonial">
+
+            <div class="Avatar">
+                🧑
+            </div>
+
+            <h3>Mateo Ruiz</h3>
+
+            <span class="Role">
+                Creador de contenido
+            </span>
+
+            <p>
+
+                "Poder compartir publicaciones,
+                historias y música en un solo lugar
+                es exactamente lo que buscaba."
+
+            </p>
+
+            <div class="Stars">
+
+                ⭐⭐⭐⭐⭐
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="CTA">
+
+    <div class="CTA-Content">
+
+        <span>COMENZÁ HOY MISMO</span>
+
+        <h2>
+            ¿Listo para descubrir una nueva forma de conectar?
+        </h2>
+
+        <p>
+
+            Chatea con tus amigos, crea comunidades,
+            comparte publicaciones, escucha música,
+            mira contenido y descubre personas con tus mismos intereses.
+
+            Todo en una sola plataforma.
+
+        </p>
+
+        <div class="CTA-Buttons">
+
+            <a href="{% url 'register' %}" class="Btn-Login">
+
+                Crear una cuenta
+
+            </a>
+
+            <a href="{% url 'login' %}" class="Btn-Register">
+
+                Ya tengo una cuenta
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- WHY -->
+
+<section class="Why">
+
+    <div class="Why-Content">
+
+        <h2>
+            ¿Por qué elegir NexaChat?
+        </h2>
+
+        <p>
+
+            Porque creemos que las redes sociales deberían conectar
+            personas, no dividirlas entre distintas aplicaciones.
+
+        </p>
+
+    </div>
+
+    <div class="Why-Grid">
+
+        <div class="Why-Box">
+            <h3>⚡ Rápido</h3>
+            <p>Todo está pensado para ser simple e intuitivo.</p>
+        </div>
+
+        <div class="Why-Box">
+            <h3>🔒 Seguro</h3>
+            <p>Tus datos y conversaciones siempre protegidos.</p>
+        </div>
+
+        <div class="Why-Box">
+            <h3>🌎 Social</h3>
+            <p>Conoce personas de cualquier parte del mundo.</p>
+        </div>
+
+        <div class="Why-Box">
+            <h3>🚀 Moderno</h3>
+            <p>Inspirado en las mejores plataformas actuales.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="Stats">
+
+    <div class="Stat">
+
+        <h2>∞</h2>
+
+        <p>
+            Posibilidades
+        </p>
+
+    </div>
+
+    <div class="Stat">
+
+        <h2>24/7</h2>
+
+        <p>
+            Siempre disponible
+        </p>
+
+    </div>
+
+    <div class="Stat">
+
+        <h2>100%</h2>
+
+        <p>
+            Diseñado para conectar personas
+        </p>
+
+    </div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="CTA">
+
+    <h2>
+
+        El próximo mensaje
+        podría cambiar tu historia.
+
+    </h2>
+
+    <p>
+
+        Miles de conversaciones comienzan todos los días.
+
+        ¿La próxima será la tuya?
+
+    </p>
+
+    {% if user.is_authenticated %}
+
+    <a href="{% url 'home' %}" class="Btn-Login">
+
+        Entrar a NexaChat
+
+    </a>
+
+    {% else %}
+
+    <div class="Hero-Buttons">
+
+        <a href="{% url 'register' %}" class="Btn-Login">
+
+            Crear Cuenta
+
+        </a>
+
+        <a href="{% url 'login' %}" class="Btn-Register">
+
+            Iniciar Sesión
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
